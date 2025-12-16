@@ -1,0 +1,12 @@
+- name: Crear directorio bbdd
+  file:
+    path: /home/ubuntu/Proyecto_cloud/bbdd
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+
+- name: Desplegar MariaDB con docker
+  become_user: ubuntu
+  command: docker compose up -d
+  args:
+    chdir: /home/ubuntu/Proyecto_cloud/bbdd

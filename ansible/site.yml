@@ -1,0 +1,11 @@
+- name: Plataforma de servidores de videojuegos
+  hosts: servidores
+  become: true
+
+  roles:
+    - docker
+    - minecraft
+    # - backups
+    - bbdd
+    - php
+    - web

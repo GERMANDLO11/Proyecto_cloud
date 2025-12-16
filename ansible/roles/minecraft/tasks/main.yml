@@ -1,0 +1,21 @@
+- name: Crear directorio del servidor
+  file:
+    path: /home/ubuntu/Proyecto_cloud/minecraft
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: '0755'
+
+- name: Copiar docker-compose de minecraft
+  copy:
+    src: /home/ubuntu/Proyecto_cloud/minecraft/docker-compose.yml
+    dest: /home/ubuntu/Proyecto_cloud/minecraft/docker-compose.yml
+    owner: ubuntu
+    group: ubuntu
+
+- name: Levantar servidor
+  become_user: ubuntu
+  command: docker compose up -d
+  args:
+    chdir: /home/ubuntu/Proyecto_cloud/minecraft
+

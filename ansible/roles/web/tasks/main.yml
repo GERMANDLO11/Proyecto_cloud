@@ -1,0 +1,12 @@
+- name: Crear directorio web
+  file:
+    path: /home/ubuntu/Proyecto_cloud/web
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+
+- name: Desplegar servidor web con docker
+  become_user: ubuntu
+  command: docker compose up -d
+  args:
+    chdir: /home/ubuntu/Proyecto_cloud/web
