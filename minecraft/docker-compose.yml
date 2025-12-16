@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  minecraft:
+    image: itzg/minecraft-server:latest
+    container_name: mcserver
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      VERSION: "1.21.11"
+      TYPE: "PAPER"
+      MEMORY: "1G"
+      ENABLE_COMMAND_BLOCK: "true"
+      DIFFICULTY: "easy"
+      MOTD: "Servidor ASIR en Docker"
+      ONLINE_MODE: "false"
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
+
+
+    
