@@ -41,3 +41,8 @@
 [18:33:10] [Server thread/INFO]: RCON running on 0.0.0.0:25575
 [18:33:10] [Server thread/INFO]: Running delayed init tasks
 [18:33:10] [Server thread/INFO]: Done (21.081s)! For help, type "help"
+[18:33:59] [User Authenticator #0/INFO]: UUID of player GERMANDL is 9ba8656a-1978-3f3a-bd3e-6808798ef65e
+[18:34:09] [Server thread/INFO]: GERMANDL joined the game
+[18:34:09] [Server thread/INFO]: GERMANDL[/91.126.103.149:57162] logged in with entity id 117 at ([world]-29.679458306827506, 74.0, 77.26415416303405)
+[18:34:41] [Server thread/INFO]: GERMANDL lost connection: Disconnected
+[18:34:41] [Server thread/INFO]: GERMANDL left the game
