@@ -1,0 +1,14 @@
+services:
+  web:
+    image: php:8.2-apache
+    container_name: web
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/var/www/html
+    networks:
+      - proyecto_net
+
+networks:
+  proyecto_net:
+    external: true

@@ -1,0 +1,13 @@
+services:
+  php:
+    image: php:8.2-fpm
+    container_name: php
+    volumes:
+      - ../web/html:/var/www/html
+    networks:
+      - proyecto_net
+
+networks:
+  proyecto_net:
+    external: true
+
