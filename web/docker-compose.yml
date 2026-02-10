@@ -6,6 +6,7 @@ services:
       - "80:80"
     volumes:
       - ./html:/var/www/html
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - proyecto_net
 
