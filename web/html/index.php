@@ -1,13 +1,25 @@
 <?php
 
+session_start();
+
+if(!isset($_SESSION['usuario'])){
+    header("Location: login.php");
+    exit;
+}
+
 $servicios = [ 
-    "php" => "PHP-FPM",
+    "web" => "Servidor Web Apache",
     "mariadb" => "Base de datos MariaDB",
     "mcserver" => "Servidor Minecraft"
 ];
 
 function estado($nombre) {
     $salida = shell_exec("docker inspect -f '{{.State.Running}}' $nombre 2>/dev/null");
+
+    if ($salida === null) {
+        return false;
+    }
+
     return trim($salida) === "true";
 }
 
@@ -32,6 +44,7 @@ if (isset($_GET['accion'], $_GET['servicio'])) {
 </head>
 <body>
     <h2 style="text-align:center;">Panel de Control de Contenedores Docker</h2>
+    <a href="logout.php" class="logout-btn">Cerrar sesión</a>
     <table>
         <tr>
             <th>Servicio</th>
