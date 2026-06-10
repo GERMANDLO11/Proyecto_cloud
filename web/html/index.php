@@ -6,6 +6,31 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit;
 }
+
+if (isset($_GET['accion'], $_GET['servicio'])) {
+
+    $accion = $_GET['accion'];
+    $servicio = $_GET['servicio'];
+
+    if (in_array($accion, ["start", "stop", "restart"])) {
+
+        shell_exec("docker $accion $servicio 2>&1");
+
+        header("Location: index.php");
+        exit;
+    }
+}
+
+$servicios = [
+    "php" => "Servidor Web Apache",
+    "mariadb" => "Base de datos MariaDB",
+    "mcserver" => "Servidor Minecraft"
+];
+
+function estado($nombre) {
+    $salida = shell_exec("docker inspect -f '{{.State.Running}}' $nombre 2>/dev/null");
+    return trim($salida) === "true";
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,16 +55,6 @@ if (!isset($_SESSION['usuario'])) {
     </tr>
 
     <?php
-    $servicios = [ 
-        "web" => "Servidor Web Apache",
-        "mariadb" => "Base de datos MariaDB",
-        "mcserver" => "Servidor Minecraft"
-    ];
-
-    function estado($nombre) {
-        $salida = shell_exec("docker inspect -f '{{.State.Running}}' $nombre 2>/dev/null");
-        return trim($salida) === "true";
-    }
 
     foreach ($servicios as $id => $nombre): ?>
         <tr>
